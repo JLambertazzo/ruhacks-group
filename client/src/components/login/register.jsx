@@ -1,10 +1,14 @@
 import React from "react";
 import loginImg from "../../login.svg";
+import { useHistory } from "react-router-dom";
+import history from '../history';
 
 export class Register extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  
 
   render() {
     return (
@@ -26,10 +30,13 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={() => {
+            history.push('/userInfo')}}>
             Register
           </button>
         </div>
+
+       
       </div>
     );
   }
