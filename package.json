@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nodemon index.js",
     "start": "node index.js",
-    "setup": "cd client && npm i && cd .. && npm i"
+    "setup": "cd client && npm i && cd .. && npm i",
     "build-run": "cd client && npm run build && cd .. && node index.js",
     "build-test": "cd client && npm run build && cd .. && nodemon index.js"
   },
