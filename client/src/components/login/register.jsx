@@ -30,13 +30,8 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="btn" onClick={() => {
-            history.push('/userInfo')}}>
-            Register
-          </button>
+          <a href="/hobbies" className="btn">Register</a>
         </div>
-
-       
       </div>
     );
   }
