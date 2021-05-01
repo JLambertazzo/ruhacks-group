@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SignUp } from "./components/login/signUp";
-import { Hobbies } from './components/hobbies/hobbies'
+import { Hobbies } from './pages/hobbies/hobbies'
 import { NavBar } from './components/general/navbar'
-import UserInfo from './pages/UserInfo';
+import UserInfo from './pages/userinfo/UserInfo';
 import './App.scss'
 
 const App = () => {
