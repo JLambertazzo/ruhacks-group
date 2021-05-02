@@ -9,17 +9,6 @@ import { Homepage } from './pages/homepage/homepage'
 import './App.scss'
 
 const App = () => {
-  // hardcoded variables
-  const user1 = {
-    'write code': false,
-    'eat food': false,
-    'consume caffeine': false
-  }
-  const user2 = {
-    'call mom': false,
-    'call your mom': false,
-    'learn react': false
-  }
   return (
     <div className='display'>
       <NavBar />
@@ -29,7 +18,7 @@ const App = () => {
             <Route exact path="/" component={Homepage} />
             <Route exact path="/userInfo" component={UserInfo} />
             <Route exact path="/hobbies" component={Hobbies} />
-            <Route exact path="/tasks" component={(props) => <TaskView {...props} user1={user1} user2={user2} />} />
+            <Route exact path="/tasks/:room" component={TaskView} />
           </Switch>
         </Router>
       </div>

@@ -48,5 +48,30 @@
         }
       }
     }
+
+    .button-container {
+      display: flex;
+      width: 100%;
+      font-size: 1.25rem;
+
+      button {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        padding: 5px;
+        color: ivory;
+        border: ivory solid 2px;
+        border-radius: 15px;
+        box-shadow: lightgrey 2px 2px 2px 2px;
+        cursor: pointer;
+        &.ready {
+          background: #54a4a4;
+        }
+  
+        &.unready {
+          background: #a45454;
+        }
+      }
+    }
   }
 }
