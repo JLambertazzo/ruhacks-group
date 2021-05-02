@@ -4,10 +4,10 @@ class UserInfo extends Component {
   render() {
     return (
       <div className="App">
-        <h1>test</h1>
+        <h1>Profile</h1>
       </div>
     );
   }
 }
 
-export default UserInfo;
+export default UserInfo

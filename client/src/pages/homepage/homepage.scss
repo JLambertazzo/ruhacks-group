@@ -4,22 +4,8 @@
 
 .home-container {
     width: 100%;
-    height: 100%;
-    background: #54A5A5;
-    //max-width: 1200px;
-    //margin: 30px auto;
-    //overflow: auto;
-    min-height: 300px;
-    padding: 30px;
+    padding: 30px 30px 0 30px;
     color: #FFFFFF;
-    margin-left: 200px;
-    margin-right: 200px;
-    display: block;
-    
-    body {
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    }
 
     h1 {
         font-family: 'Raleway', sans-serif;
@@ -32,17 +18,18 @@
 
     .image {
         float: left;
-        width:50%;
+        width: 50%;
+        transform: translate(-1em, -12em);
     }
 
     .content {
         float: right;
         width: 50%;
-        margin-top: 200px;
+        transform: translate(0, -2em);
     }
 
     .homepage-img {
-        height: 700px;
+        height: 100vh;
         object-fit: contain;
     }
 

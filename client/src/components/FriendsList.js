@@ -1,22 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import Hamburger from '../assets/images/hamburger.svg';
 import Online from '../assets/images/circle-fill.svg';
 import Search from '../assets/images/search.svg';
 import FriendListItem from './FriendListItem';
+import X from '../assets/images/x.svg';
+import { useHistory } from 'react-router-dom';
 
 const PageWrapper = styled.div`
-  height: 100vh;
 `;
 
 const SidebarWrapper = styled.nav`
   width: 260px;
-  background: #1d1d1d;
   height: 100%;
-  max-height: 100%;
+  background: #1d1d1d;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
 
   ul {
     list-style-type: none;
@@ -44,7 +43,8 @@ const SidebarBrand = styled.div`
   align-items: center;
 
   > img {
-    width: 1.6em;
+    width: 2em;
+    transform: translateX(0.7em);
     cursor: pointer;
   }
 
@@ -72,6 +72,14 @@ const SidebarHeader = styled.div`
   .user-info {
     float: left;
     color: #b3b8c1;
+
+    .user-name {
+      cursor: pointer;
+
+      :hover {
+        text-decoration: underline;
+      }
+    }
 
     span {
       display: block;
@@ -152,25 +160,29 @@ const SidebarMenu = styled.div`
   }
 `;
 
-const FriendsList = () => {
+const FriendsList = ({ setSidebarActive }) => {
 
   const friends = ["Ted", "Todd", "Thomas", "Theodore", "Tommy"];
+
+  const offlineFriends = ["Tony", "Tammy", "Timmy", "Troy"];
+
+  const history = useHistory();
 
   return (
     <PageWrapper className="page-wrapper toggled">
       <SidebarWrapper id="sidebar" className="sidebar-wrapper">
         <SidebarContent className="sidebar-content">
           <SidebarBrand className="sidebar-brand">
-            <img src={Hamburger} alt="Hamburger"/>
-            <span>Friends List</span>
             <div></div>
+            <span>Friends List</span>
+            <img onClick={() => setSidebarActive(false)} src={X} alt="Hamburger"/>
           </SidebarBrand>
           <SidebarHeader class="sidebar-header">
             <div className="user-pic">
               <img className="img-responsive img-rounded" src="https://www.gravatar.com/avatar/0184a137bf6706a73d006a6a78fc0a46" alt="" />
             </div>
             <div className="user-info">
-              <span className="user-name">William <strong>Ocampo</strong></span>
+              <span onClick={() => history.push("/userInfo")} className="user-name">William <strong>Ocampo</strong></span>
               <span className="user-role">Gamer</span>
               <div className="user-status">
                 <img src={Online} alt="Online"/>
@@ -189,9 +201,9 @@ const FriendsList = () => {
           <SidebarMenu className="sidebar-menu">
             <ul>
               <li className="header-menu"><span>Online</span></li>
-              {friends.map(friend => <FriendListItem friend={friend} />)}
+              {friends.map(friend => <FriendListItem friend={friend} isOnline={true} />)}
               <li className="header-menu"><span>Offline</span></li>
-              {friends.map(friend => <FriendListItem friend={friend} />)}
+              {offlineFriends.map(friend => <FriendListItem friend={friend} isOnline={false} />)}
             </ul>
           </SidebarMenu>
         </SidebarContent>
