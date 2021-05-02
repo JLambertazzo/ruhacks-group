@@ -1,18 +1,29 @@
 const express = require('express')
-const path = require('path')
-const bodyParser = require('body-parser')
+const http = require('http')
+const socketIo = require('socket.io')
+const routes = require('./routes')
+
 const app = express()
+app.use(routes)
+const server = http.createServer(app)
+const io = socketIo(server, {
+  cors: {
+    allowedHeaders: ['Access-Control-Allow-Origin']
+  }
+})
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '/client/build')))
-
-app.get('*', (req, res) => {
-  console.log(`sending ${path.join(__dirname, '/client/build/index.html')}`)
-  res.sendFile(path.join(__dirname, '/client/build/index.html'))
+io.on('connection', function(socket) {
+  console.log('user connected')
+  socket.on('u1Ready', user1 => {
+    socket.broadcast.emit('u2Ready', user1)
+  })
+  socket.on('u2Checked', index => {
+    socket.broadcast.emit('u1Checked', index)
+  })
+  socket.on('message', message => {
+    socket.broadcast.emit('message', message)
+  })
 })
 
 const port = process.env.PORT || 5000
-app.listen(port, () => {
-  console.log(`listening on port ${port}`)
-})
+server.listen(port, () => console.log(`listening on ${port}`))
