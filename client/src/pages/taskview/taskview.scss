@@ -1,0 +1,52 @@
+.task-view-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+
+  .task-view {
+    background: ivory;
+    padding: 30px;
+    border-radius: 15px;
+
+    &>* {
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .header {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .task-content {
+      display: flex;
+      
+      .task-left, .task-right {
+        padding: 20px;
+        border: lightgrey solid 1px;
+        border-radius: 3px;
+        flex-basis: 0;
+        flex-grow: 1;
+        text-align: left;
+        font-size: 1.25rem;
+
+        h2 {
+          font-size: 2.15rem;
+        }
+
+        p {
+          font-size: 0.75rem;
+          word-wrap: normal;
+          max-width: 60%;
+          color: gray;
+        }
+
+        .checkbox-div>* {
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}
