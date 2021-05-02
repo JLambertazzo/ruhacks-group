@@ -11,12 +11,26 @@ const SidebarDropdown = styled.li`
   }
 `;
 
-const FriendListItem = ({ friend }) => {
+const FriendListItem = ({ friend, isOnline }) => {
+
+  const renderOnlineFeatures = () => {
+
+    if (isOnline) {
+      return (
+        <>
+          <img src={Studdy} alt="Studdy" />
+          <img src={Chat} alt="Chat" />
+        </>
+      )
+    }
+
+    return null;
+  }
+
   return (
     <SidebarDropdown className="sidebar-dropdown">
       <a href="#"><span>{friend}</span></a>
-      <img src={Studdy} />
-      <img src={Chat} />
+      {renderOnlineFeatures()}
     </SidebarDropdown>
   )
 };

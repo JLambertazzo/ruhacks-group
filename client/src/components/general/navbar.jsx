@@ -1,43 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './navbar.scss'
+import styled from 'styled-components';
+import HamburgerIcon from '../../assets/images/hamburger.svg';
+import { useHistory } from 'react-router-dom';
 
-export class NavBar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loggedIn: true
-    }
-  }
+const Hamburger = styled.img`
+  position: absolute;
+  right: 0;
+  top: -0.4em;
+  cursor: pointer;
+  width: 2em;
+`;
 
-  userSection(loggedIn) {
-    if (loggedIn) {
-      return (
-        <div className='nav-right'>
-          <a href='#'>Profile</a>
-        </div>
-      )
-    } else {
-      return (
-        // time permitting: responsive
-        <div className='nav-right'>
-          <a href='/login'>Log In</a>
-          <a href='/signup'>Sign Up</a>
-        </div>
-      )
-    }
-  }
+export const NavBar = ({ setSidebarActive }) => {
 
-  render() {
+  const history = useHistory();
+
+  const loggedInContent = () => {
     return (
-      <nav className='navbar'>
-        <div className='nav-left'>
-          <img src='https://via.placeholder.com/85' alt='Logo' />
-          <a href='/homepage'>Home</a>
-        </div>
-        {this.userSection(this.state.loggedIn)}
-      </nav>
+      <div className='nav-right'>
+        <Hamburger onClick={() => setSidebarActive(true)} src={HamburgerIcon} alt="Friends List" />
+      </div>
     )
   }
+
+  return (
+    <nav className='navbar'>
+      <div className='nav-left'>
+        <img onClick={() => history.push("/")} src='https://via.placeholder.com/85' alt='Logo' />
+      </div>
+      {loggedInContent()}
+    </nav>
+  )
 }
 
 export default NavBar
