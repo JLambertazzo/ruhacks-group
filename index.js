@@ -20,6 +20,9 @@ io.on('connection', function(socket) {
   socket.on('u2Checked', index => {
     socket.broadcast.emit('u1Checked', index)
   })
+  socket.on('message', message => {
+    socket.broadcast.emit('message', message)
+  })
 })
 
 const port = process.env.PORT || 5000

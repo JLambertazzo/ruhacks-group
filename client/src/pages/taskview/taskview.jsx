@@ -18,15 +18,18 @@ export class TaskView extends Component {
       u1Ready: false,
       u2Ready: false,
       u1Prog: '0',
-      u2Prog: '0'
+      u2Prog: '0',
+      messages: [],
+      message: ''
     }
     this.handleCheck = this.handleCheck.bind(this)
     this.handleReady = this.handleReady.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleSend = this.handleSend.bind(this)
     this.addTask = this.addTask.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     socket.emit('client-event')
     socket.on('u2Ready', user2 => {
       const rdy = !this.state.u2Ready
@@ -37,6 +40,14 @@ export class TaskView extends Component {
       prev[index][1] = !prev[index][1]
       let newProg = this.getProg(prev)
       this.setState({ user1: prev, u1Prog: newProg })
+    })
+    socket.on('message', message => {
+      const messages = this.state.messages
+      if (messages.length > 4) {
+        messages.shift()
+      }
+      messages.push(`User2: ${message}`)
+      this.setState({ messages: messages })
     })
   }
 
@@ -108,6 +119,17 @@ export class TaskView extends Component {
     }
   }
 
+  handleSend () {
+    const messages = this.state.messages
+    if (messages.length > 4) {
+      messages.shift()
+    }
+    const message = this.state.message
+    messages.push(`You: ${message}`)
+    this.setState({ messages: messages, message: '' })
+    socket.emit('message', this.state.message)
+  }
+
   render () {
     return (
       <div className='task-view-container'>
@@ -126,7 +148,7 @@ export class TaskView extends Component {
                   <input type='text' value={task[0]} className={this.state.u1Ready ? 'none' : ''} onChange={(event) => this.handleChange(event, index, 1)} />
                 </div>
               )}
-              <button className={this.state.u1Ready ? 'none' : 'btn'} onClick={(event) => this.addTask(event, 1)}>New Task</button>
+              <button className={this.state.u1Ready ? 'none' : 'btn'} onClick={(event) => this.addTask(event, 1)}>+ New Task</button>
               <br />
               <p><em>only your study buddy can check off your tasks</em></p>
             </div>
@@ -137,15 +159,19 @@ export class TaskView extends Component {
                 <div className='checkbox-div' key={index}>
                   <input type="checkbox" checked={task[1]} onClick={(event) => this.handleCheck(event, index)} name={task[0]} id={task[0]} />
                   <label htmlFor={task[0]} className={this.state.u2Ready ? '' : 'none'} onDoubleClick={console.log}>{task[0]}</label>
-                  <input type='text' value={task[0]} className={this.state.u2Ready ? 'none' : ''} onChange={(event) => this.handleChange(event, index, 2)} />
                 </div>
               )}
-              <button className={this.state.u2Ready ? 'none' : 'btn'} onClick={(event) => this.addTask(event, 2)}>New Task</button>
             </div>
           </div>
           <div className={this.state.u1Ready && this.state.u2Ready ? 'none' : 'button-container'}>
             <button className={this.state.u1Ready ? 'ready' : 'unready'} onClick={this.handleReady}>Ready</button>
             <button disabled className={this.state.u2Ready ? 'ready' : 'unready'} onClick={this.handleReady}>Ready</button>
+          </div>
+          <div className='text-chat'>
+            <h2>Chat:</h2>
+            {this.state.messages.map((message, index) => <p key={index}><em>{message}</em></p>)}
+            <input type="text" value={this.state.message} onChange={(event) => this.setState({ message: event.target.value })} />
+            <button onClick={this.handleSend}>Send</button>
           </div>
         </div>
       </div>

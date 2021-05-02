@@ -46,6 +46,16 @@
         .checkbox-div>* {
           padding: 0 5px;
         }
+
+        input {
+          max-width: 75%;
+          margin-left: 2px;
+        }
+
+        .btn {
+          margin-top: 5px;
+          font-size: 1.15rem;
+        }
       }
     }
 
@@ -71,6 +81,30 @@
         &.unready {
           background: #a45454;
         }
+      }
+    }
+
+    .text-chat {
+      text-align: left;
+      font-size: 1.15rem;
+
+      * {
+        margin: 1px 0;
+      }
+
+      input {
+        outline: none;
+        border: lightgrey 2px solid;
+      }
+
+      button {
+        border: none;
+        outline: none;
+        background: #54a4a4;
+        color: ivory;
+        border: #54a4a4 solid 2px;
+        box-shadow: lightgrey 2px 2px 2px 2px;
+        cursor: pointer;
       }
     }
   }
