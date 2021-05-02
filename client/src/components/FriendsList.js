@@ -182,7 +182,7 @@ const FriendsList = ({ setSidebarActive }) => {
               <img className="img-responsive img-rounded" src="https://www.gravatar.com/avatar/0184a137bf6706a73d006a6a78fc0a46" alt="" />
             </div>
             <div className="user-info">
-              <span onClick={() => history.push("/userInfo")} className="user-name">William <strong>Ocampo</strong></span>
+              <span onClick={() => history.push("/userInfo")} className="user-name">John <strong>Smith</strong></span>
               <span className="user-role">Gamer</span>
               <div className="user-status">
                 <img src={Online} alt="Online"/>

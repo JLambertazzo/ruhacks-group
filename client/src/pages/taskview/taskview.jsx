@@ -153,7 +153,7 @@ export class TaskView extends Component {
               <p><em>only your study buddy can check off your tasks</em></p>
             </div>
             <div className='task-right'>
-              <h2>User2's tasks</h2>
+              <h2>Ted's tasks</h2>
               <progress id='buddy-prog' value={this.state.u2Prog} max='100' />
               {this.state.user2.map((task, index) =>
                 <div className='checkbox-div' key={index}>

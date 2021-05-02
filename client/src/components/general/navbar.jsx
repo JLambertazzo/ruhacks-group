@@ -3,6 +3,7 @@ import './navbar.scss'
 import styled from 'styled-components';
 import HamburgerIcon from '../../assets/images/hamburger.svg';
 import { useHistory } from 'react-router-dom';
+import Logo from '../../assets/images/studybuddies_logo1.png';
 
 const Hamburger = styled.img`
   position: absolute;
@@ -27,7 +28,7 @@ export const NavBar = ({ setSidebarActive }) => {
   return (
     <nav className='navbar'>
       <div className='nav-left'>
-        <img onClick={() => history.push("/")} src='https://via.placeholder.com/85' alt='Logo' />
+        <img onClick={() => history.push("/")} src={Logo} alt='Logo' />
       </div>
       {loggedInContent()}
     </nav>
