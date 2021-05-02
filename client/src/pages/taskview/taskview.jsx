@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import './taskview.scss'
 
-const socket = io('http://localhost:5000', {
+const socket = io('/', {
   extraHeaders: {
     'Access-Control-Allow-Origin': '*'
   }
