@@ -19,6 +19,7 @@ const App = () => {
             <Route exact path="/userInfo" component={UserInfo} />
             <Route exact path="/hobbies" component={Hobbies} />
             <Route exact path="/tasks/:room" component={TaskView} />
+            <Route exact path="/homepage" component={Homepage} />
           </Switch>
         </Router>
       </div>

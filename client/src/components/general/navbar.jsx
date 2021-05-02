@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import './navbar.scss'
 
 export class NavBar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       loggedIn: true
     }
   }
 
-  userSection (loggedIn) {
+  userSection(loggedIn) {
     if (loggedIn) {
       return (
         <div className='nav-right'>
@@ -27,12 +27,12 @@ export class NavBar extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <nav className='navbar'>
         <div className='nav-left'>
           <img src='https://via.placeholder.com/85' alt='Logo' />
-          <a href='/'>Home</a>
+          <a href='/homepage'>Home</a>
         </div>
         {this.userSection(this.state.loggedIn)}
       </nav>
